@@ -1,0 +1,43 @@
+Task 14 – Cloud Dweller Badge
+Name: Meghana Dinesh
+Date: 13.09.2025
+
+Steps Performed:
+
+1. Created a free VM in GCP with public IP 34.131.120.95 and internal IP 10.190.0.5.
+2. Connected to the VM from Kali Linux via SSH:
+   $ ssh meghanadinesh94@34.131.120.95
+  
+3. Installed required packages:
+   $ sudo apt update
+   $ sudo apt install apache2 php mysql-server nano -y
+4. Cloned my GitHub repository from Task 12:
+ https://github.com/meghanadinesh18/tasktwelve
+5. Copied HTML files to the Apache web root:
+   $ sudo cp -r tasktwelve/* /var/www/html/
+6. Started Apache server:
+   $ sudo systemctl start apache2
+   - Verified page via browser: http://34.131.120.95 
+7. Configured MySQL:
+   $ sudo mysql -u root
+   > CREATE DATABASE cloudapp;
+   > CREATE USER 'clouduser'@'localhost' IDENTIFIED BY 'cloudpass';
+   > GRANT ALL PRIVILEGES ON cloudapp.* TO 'clouduser'@'localhost';
+   > FLUSH PRIVILEGES;
+   > USE cloudapp;
+   > CREATE TABLE users (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         username VARCHAR(50) NOT NULL UNIQUE,
+         password VARCHAR(255) NOT NULL
+     );
+   > INSERT INTO users (username, password) VALUES ('testuser', '$2y$10$u8a0V3x8qV8poVg1bG7i4eqXqqMsc0Z9TkpDZP6qCZP6/ZwHkz0he');
+   - MySQL database, table, and user created (screenshot taken)
+8. Created PHP files for user registration and login:
+   - /var/www/html/register.php
+   - /var/www/html/login.php
+   - Verified login page works: http://34.131.120.95/login.php (screenshot taken)
+9. Verified that the web page is accessible publicly via IP (screenshot taken)
+10. Documented the public IP: 34.131.120.95
+11. Uploaded all steps, screenshots, and IP to GitHub repository named task14.
+12. VM is kept running for a week for testing and will be terminated safely after.
+
